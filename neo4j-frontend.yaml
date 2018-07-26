@@ -7,7 +7,11 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 7474
+    - port: 443
       targetPort: 7474
+      name: browser
+    - port: 7687
+      targetPort: 7687
+      name: bolt
   selector:
     app: neo4j
