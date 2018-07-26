@@ -5,10 +5,7 @@ metadata:
     app: neo4j
   name: neo4j
 spec:
-  type: LoadBalancer
   ports:
-    - port: 443
-      targetPort: 7474
     - port: 7687
       targetPort: 7687
   selector:
