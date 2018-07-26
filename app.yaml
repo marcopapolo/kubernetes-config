@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: cafesucre/bot-search/app:latest
+          image: registry.gitlab.com/cafesucre/bot-search/app:latest
           env:
             - name: NEO4J_DB_HOST
               value: neo4j:7687
