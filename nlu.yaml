@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rasa-nlu
+  labels:
+    app: rasa-nlu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa-nlu
+  template:
+    metadata:
+      labels:
+        app: rasa-nlu
+    spec:
+      containers:
+        - image: registry.gitlab.com/cafesucre/bot-search/nlu-service:1.0.0
+          name: rasa-nlu
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: rasa-nlu-persistent-storage
+              mountPath: /app/projects
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+        - name: rasa-nlu-persistent-storage
+          persistentVolumeClaim:
+            claimName: nlu-storage
