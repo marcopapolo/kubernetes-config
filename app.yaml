@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: cafesucre/bot-search/app:latest
+          env:
+            - name: NEO4J_DB_HOST
+              value: neo4j:7687
+            - name: NEO4J_AUTH
+              valueFrom:
+                secretKeyRef:
+                  name: neo4j
+                  key: auth
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred
