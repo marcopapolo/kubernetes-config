@@ -25,6 +25,8 @@ spec:
                 secretKeyRef:
                   name: neo4j
                   key: auth
+            - name: RASA_NLU_HOST
+              value: rasa-nlu:5000
           ports:
             - containerPort: 3000
       imagePullSecrets:
